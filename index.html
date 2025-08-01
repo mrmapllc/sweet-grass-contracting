@@ -37,11 +37,11 @@
             {
               type: "fields",
               fieldInfos: [
-                { fieldName: "Grid", label: "Grid", editable: false },
-                { fieldName: "Rate_A", label: "Rate A", editable: true },
-                { fieldName: "Rate_B", label: "Rate B", editable: true },
-                { fieldName: "Rate_C", label: "Rate C", editable: true },
-                { fieldName: "Notes", label: "Notes", editable: true }
+                { fieldName: "Grid", label: "Grid" },
+                { fieldName: "Rate", label: "Rate" },
+                { fieldName: "RateB", label: "Rate B" },
+                { fieldName: "RateC", label: "Rate C" },
+                { fieldName: "Notes", label: "Notes" }
               ]
             }
           ]
@@ -66,10 +66,11 @@
           layerInfos: [{
             layer: featureLayer,
             fieldConfig: [
-              { name: "Rate_A", label: "Rate A" },
-              { name: "Rate_B", label: "Rate B" },
-              { name: "Rate_C", label: "Rate C" },
-              { name: "Notes", label: "Notes" }
+              { name: "Grid", label: "Grid", editable: false },
+              { name: "Rate", label: "Rate", editable: true },
+              { name: "RateB", label: "Rate B", editable: true },
+              { name: "RateC", label: "Rate C", editable: true },
+              { name: "Notes", label: "Notes", editable: true }
             ],
             addEnabled: false // Disable create features
           }],
