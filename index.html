@@ -26,8 +26,9 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/layers/FeatureLayer",
-      "esri/widgets/Editor"
-    ], function(Map, MapView, FeatureLayer, Editor) {
+      "esri/widgets/Editor",
+      "esri/widgets/Search"
+    ], function(Map, MapView, FeatureLayer, Editor, Search) {
       const featureLayer = new FeatureLayer({
         url: "https://services.arcgis.com/e78obyrOLbvYxKAG/arcgis/rest/services/Grids/FeatureServer/0",
         outFields: ["*"],
@@ -61,6 +62,29 @@
       });
 
       view.when(function() {
+        const searchWidget = new Search({
+          view: view,
+          allPlaceholder: "Search address, place, or grid...",
+          includeDefaultSources: true,
+          sources: [
+            // Feature layer search
+            {
+              layer: featureLayer,
+              searchFields: ["Grid", "Rate", "RateB", "RateC", "Notes"],
+              displayField: "Grid",
+              exactMatch: false,
+              outFields: ["*"],
+              name: "Grids",
+              placeholder: "Search by Grid, Rate, Notes..."
+            }
+            // Default sources (geocoding, places) are included automatically
+          ]
+        });
+        view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 0
+        });
+
         const editor = new Editor({
           view: view,
           layerInfos: [{
